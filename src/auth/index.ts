@@ -24,8 +24,10 @@ const authOptions:NextAuthConfig = {
 
         const user = await prisma.user.findUnique({ where: { email } });
         // const user = await db.select().from(users).where(eq(users.email, email))
-
-        if (!user) {
+        console.log('asdkjfkajsdkfljdsafj',
+          user
+        )
+        if (!user?.id) {
           throw new Error('Invalid Email')
         }
         const isMatched = await compare(password, user?.password)

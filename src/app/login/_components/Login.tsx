@@ -11,10 +11,13 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { useState } from "react";
 
 export default function Login() {
+  const router = useRouter();
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -38,12 +41,13 @@ export default function Login() {
         email: formData.email,
         password: formData.password,
       });
-      window.location.reload()
-      // router.push(res);
+      setError("");
+      // window.location.reload()
+      router.push('/');
       console.log("Login successful", res);
     } catch (err: any) {
-      console.error("Login error", err.message);
-      // setError(err.message || 'An error occurred');
+      console.error("Login errorsdaf", err.message);
+      setError(err.message || 'An error occurred');
     }
   };
 
@@ -76,6 +80,8 @@ export default function Login() {
           >
             Log In
           </button>
+          
+          <p style={{fontSize:16,color:"red",textAlign:"center",marginBottom:"10px"}}>{error}</p>
           <a href="#" className="block text-center text-blue-600 mt-2">
             Forgotten password?
           </a>
