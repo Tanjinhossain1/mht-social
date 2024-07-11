@@ -10,6 +10,6 @@ export default async function Home() {
   if (!user) redirect("/login");
 
   return (
-    <div></div>
+    <div>edfsdaf</div>
   );
 }
